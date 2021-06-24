@@ -95,7 +95,7 @@ def load_data():
     foodtech = pd.read_csv('data/food_tech.csv', usecols=lambda x: x not in skipcols_tech, index_col=0).reset_index()
     foodtech.rename(columns = {'Origin_country':'Country','App Name':'App_name'}, inplace = True)
     # Dataset countries coordinates from Google Drive
-    countries =pd.read_csv('data\Countries & Territories Taxonomy MVP - C&T Taxonomy with HXL Tags.csv',  usecols=lambda x: x not in skipcols, index_col=0).reset_index()
+    countries =pd.read_csv('data/Countries & Territories Taxonomy MVP - C&T Taxonomy with HXL Tags.csv',  usecols=lambda x: x not in skipcols, index_col=0).reset_index()
     #Changing column name to be equal to the names in df country_shapes and df foodtech
     countries.rename(columns = {'ISO 3166-1 Alpha 3-Codes':'ISO3'}, inplace = True)
     countries.rename(columns = {'English Short':'Country'}, inplace = True)
