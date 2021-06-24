@@ -1,9 +1,10 @@
+<img src="https://github.com/merlynjocol/DataRuralHub_FoodSystem_DigitalTechnologies-/blob/main/images_foodtech/planet%26logo.JPG" width="160" height="150">
+
+
 # DataRuralHub
+
 A tool to highligth the digital technologies trasnforming the Food Systems
 ### **Author:** [Merlyn J. Hurtado](https://github.com/merlynjocol)
-
-
-<img src="https://github.com/merlynjocol/DataRuralHub_FoodSystem_DigitalTechnologies-/blob/main/images_foodtech/planet%26logo.JPG" width="160" height="150">
 
 
 
