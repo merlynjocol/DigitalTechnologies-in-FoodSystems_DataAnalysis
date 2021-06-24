@@ -15,7 +15,7 @@ The main goal of this project is to built and deploy interactive dashboards of d
 
 # Instructions to use the Dashboard
 
-🔴Link:  https://share.streamlit.io/merlynjocol/foodissues_interactive_dashboards/main/food_issues.py
+🔴Link: https://share.streamlit.io/merlynjocol/dataruralhub_foodsystem_digitaltechnologies-/main/CH_Foodtech.py
 
 1. Selec the VARIABLE
 
