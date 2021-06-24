@@ -45,7 +45,7 @@ st.set_page_config(
 from PIL import Image
 st.sidebar.image('images_foodtech/logoPNG.png', width=110)
 
-st.sidebar.title('World Data Food Hub')
+st.sidebar.title('Data Rural Hub')
 st.sidebar.markdown('''Explore the issues and the digital transformation towards sustainable Food Systems''')
 st.sidebar.subheader('''Navigation''')
 
@@ -334,7 +334,7 @@ fig.update_layout(
 col1, col2, col3 = st.beta_columns([3, 0.5, 5])
 
 with col1:
-    st.title("Data-Driven Agri-Food Solutions")
+    st.title("Data-Driven Agr-Food Solutions")
     st.markdown ('<p style= "font-family:Verdana; color:Black; font-size: 20px;">Interactive Dashboards </p>', unsafe_allow_html=True)
     st.write(':chart_with_upwards_trend: A total of 67 data-driven innovations were selected, which were narrowed down to those with relevant actions in the transformation of the food systems. Below is the distribution based on countries')
              
