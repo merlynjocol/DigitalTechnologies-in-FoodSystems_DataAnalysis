@@ -15,8 +15,6 @@ import plotly.figure_factory as ff
 from plotly.subplots import make_subplots
 
 import json
-from geopy.geocoders import Nominatim  # convert address into latitude and longitude 
-import requests # library to handle requests
 
 #building the app
 import streamlit as st #creating an app
