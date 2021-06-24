@@ -2,6 +2,11 @@
 A tool to highligth the digital technologies trasnforming the Food Systems
 ### **Author:** [Merlyn J. Hurtado](https://github.com/merlynjocol)
 
+
+<img src="https://github.com/merlynjocol/DataRuralHub_FoodSystem_DigitalTechnologies-/blob/main/images_foodtech/planet%26logo.JPG" width="160" height="150">
+
+
+
 # Description
 
 This result is part of the project Data Rural Hub, developeded during the Challenge Hub Program 2021 in the Master AIRE in the [Center for Research and Interdisciplinarity -CRI- ](https://cri-paris.org/en).
@@ -24,7 +29,7 @@ The main goal of this project is to built and deploy interactive dashboards of d
 # Dataset 
  The dataset are from: 
  
- https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv?raw=true     🔴
+ https://github.com/merlynjocol/DataRuralHub_FoodSystem_DigitalTechnologies-/blob/main/data/food_tech.csv   🔴
  
  # Licensing
 
