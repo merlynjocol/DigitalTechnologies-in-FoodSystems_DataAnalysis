@@ -81,7 +81,7 @@ def load_data():
        'Spanish Short', 'Russian Short', 'Chinese Short', 'Arabic Short',
        'Admin Level', 'Intermediate Region Code',
        'Intermediate Region Name', 'Regex', 'Concatenation']
-    country_shapes = json.load(open('data\world-countries.json'))
+    country_shapes = json.load(open('data/world-countries.json'))
     
     # Main Dataset 
     # Columns in Foodtech
