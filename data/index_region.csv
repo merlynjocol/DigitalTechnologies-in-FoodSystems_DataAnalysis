@@ -1,0 +1,112 @@
+,Region_n,Country_x,BCFN,CGIAR
+0,Africa,Algeria,,0.3097
+1,Africa,Benin,,0.4363
+2,Africa,Botswana,,0.5105
+3,Africa,Burkina Faso,66.4,0.3738
+4,Africa,Cameroon,59.7,0.5041
+5,Africa,Cote d'Ivoire,65.9,0.5041
+6,Africa,Egypt,63.0,0.3215
+7,Africa,Ethiopia,68.5,0.3535
+8,Africa,Ghana,57.6,0.5081
+9,Africa,Guinea,,0.3061
+10,Africa,Kenya,64.4,0.4256
+11,Africa,Madagascar,,0.3017
+12,Africa,Malawi,,0.3651
+13,Africa,Mali,,0.3671
+14,Africa,Morocco,63.5,0.3829
+15,Africa,Mozambique,63.0,0.3472
+16,Africa,Niger,,0.3164
+17,Africa,Nigeria,63.7,0.5151
+18,Africa,Rwanda,71.6,0.4071
+19,Africa,Senegal,65.8,0.3236
+20,Africa,Sierra Leone,58.8,0.4558
+21,Africa,South Africa,56.4,0.5346
+22,Africa,Sudan,60.9,0.3114
+23,Africa,Tanzania,67.4,0.4079
+24,Africa,Togo,,0.4715
+25,Africa,Tunisia,62.3,0.3847
+26,Africa,Uganda,68.7,0.443
+27,Africa,Zambia,67.2,0.4097
+28,Africa,Zimbabwe,67.3,
+29,Americas,Argentina,71.5,0.57
+30,Americas,Bolivia,,0.462
+31,Americas,Brazil,65.5,0.5827
+32,Americas,Canada,75.3,0.7193
+33,Americas,Chile,,0.5625
+34,Americas,Colombia,71.2,0.5992
+35,Americas,Costa Rica,,0.5793
+36,Americas,Dominican Republic,,0.5499
+37,Americas,Ecuador,,0.5427
+38,Americas,El Salvador,,0.5278
+39,Americas,Guatemala,,0.47
+40,Americas,Honduras,,0.4983
+41,Americas,Mexico,65.6,0.5173
+42,Americas,Nicaragua,,0.5149
+43,Americas,Panama,,0.568
+44,Americas,Paraguay,,0.5419
+45,Americas,Peru,,0.5332
+46,Americas,United States,68.6,0.6969
+47,Americas,Uruguay,,0.575
+48,Americas,Venezuela,,0.5901
+49,Asia,Azerbaijan,,0.506
+50,Asia,Bangladesh,,0.2861
+51,Asia,Cambodia,,0.3903
+52,Asia,China,70.2,
+53,Asia,Cyprus,65.8,
+54,Asia,India,66.4,0.2983
+55,Asia,Indonesia,59.1,0.4824
+56,Asia,Israel,64.6,
+57,Asia,Japan,73.8,0.5959
+58,Asia,Jordan,62.8,0.2589
+59,Asia,Kazakhstan,,0.6043
+60,Asia,Kuwait,,0.5725
+61,Asia,Laos,,0.4219
+62,Asia,Lebanon,62.4,
+63,Asia,Malaysia,,0.6353
+64,Asia,Myanmar,,0.4264
+65,Asia,Nepal,,0.3704
+66,Asia,Pakistan,,0.3086
+67,Asia,Philippines,,0.4688
+68,Asia,Saudi Arabia,56.2,0.3844
+69,Asia,South Korea,70.5,0.5798
+70,Asia,Sri Lanka,,0.3571
+71,Asia,Tajikistan,,0.453
+72,Asia,Thailand,,0.4827
+73,Asia,Turkey,60.1,0.4647
+74,Asia,United Arab Emirates,,0.5161
+75,Asia,Viet Nam,,0.4277
+76,Asia,Yemen,,0.3087
+77,Europe,Austria,73.3,0.6931
+78,Europe,Belarus,,0.5748
+79,Europe,Belgium,66.2,0.5711
+80,Europe,Bulgaria,54.5,0.5895
+81,Europe,Croatia,71.4,
+82,Europe,Czech Republic,74.0,0.5891
+83,Europe,Denmark,73.5,0.6303
+84,Europe,Estonia,70.8,
+85,Europe,Finland,74.1,0.6083
+86,Europe,France,76.1,0.6749
+87,Europe,Germany,71.2,0.6654
+88,Europe,Greece,64.5,0.5509
+89,Europe,Hungary,72.5,0.5634
+90,Europe,Ireland,71.0,
+91,Europe,Italy,68.1,0.6014
+92,Europe,Latvia,61.9,
+93,Europe,Lithuania,65.3,
+94,Europe,Luxembourg,67.9,
+95,Europe,Malta,61.5,
+96,Europe,Netherlands,75.6,0.704
+97,Europe,Norway,,0.6927
+98,Europe,Poland,71.3,0.5519
+99,Europe,Portugal,70.6,
+100,Europe,Romania,64.4,0.5666
+101,Europe,Russia,56.1,0.6208
+102,Europe,Slovakia,61.4,0.5894
+103,Europe,Slovenia,60.9,
+104,Europe,Spain,70.9,0.6481
+105,Europe,Sweden,73.4,0.6892
+106,Europe,Switzerland,,0.7219
+107,Europe,Ukraine,,0.5397
+108,Europe,United Kingdom,70.0,0.7111
+109,Oceania,Australia,71.8,0.6887
+110,Oceania,New Zealand,,0.7262
