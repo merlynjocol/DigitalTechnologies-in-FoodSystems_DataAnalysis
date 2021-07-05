@@ -2,7 +2,7 @@
 
 
 # DataRuralHub
-Online ool to help decision making in the digital trasnformation of the Food Systems towards sustainabilty and fairness
+Explore Data-Driven Agri-Food Solutions with interactive Dashboards to help decision making in the digital trasnformation of the Food Systems towards sustainability and fairness
 ### **Author:** [Merlyn J. Hurtado](https://github.com/merlynjocol)
 
 # Description
