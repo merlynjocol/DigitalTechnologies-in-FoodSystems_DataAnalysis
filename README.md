@@ -7,7 +7,7 @@ Explore Data-Driven Agri-Food Solutions with interactive Dashboards to help deci
 
 # Description
 
-This result is part of the project Data Rural Hub, developeded in the Challenge Hub Program 2021 at the [Center for Research and Interdisciplinarity -CRI- ](https://cri-paris.org/en).
+This result is part of the project Data Rural Hub, developed in the Challenge Hub Program 2021 at the [Center for Research and Interdisciplinarity -CRI- ](https://cri-paris.org/en).
 The aim of this study is to explore the digital solutions transforming the food systems towards sustainability, and develop a tool –DataRuraHub- to share the results to support the decision making in the digital transformation of the food systems. 
 
 
