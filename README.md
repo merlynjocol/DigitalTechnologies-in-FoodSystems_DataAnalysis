@@ -51,11 +51,4 @@ Use of open data sources, data analysis and  web deployment to give the user the
 [![License: CC](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # Credits
-Thanks for the support and mentoring to: 
-* Gabriel Fauste, teacher in the Center for Research and Interdisciplinary. Paris, France 
-* Romain Rouyer, teacher in the Center for Research and Interdisciplinary. Paris, France 
-* Anthony Jahn, teacher in the Center for Research and Interdisciplinary. Paris, France 
-* Liliana Baquero, Coordinator of the Master AIRE. Center for Research and Interdisciplinary -CRI-. Paris, France 
-* Challenge Hub Program of the Center for Research and Interdisciplinary-CRI-.  Paris, France 
-
 <img src="https://github.com/merlynjocol/AgeGuess-Data-Analysis--Gender-Ethnic-analysis-in-age-guessing/blob/main/logoCRI.jpg" width="80" height="80">
