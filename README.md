@@ -7,8 +7,10 @@ Explore Data-Driven Agri-Food Solutions with interactive Dashboards to help deci
 
 # Description
 
-This result is part of the project Data Rural Hub, developeded during the Challenge Hub Program 2021 in the Master AIRE in the [Center for Research and Interdisciplinarity -CRI- ](https://cri-paris.org/en).
-The main goal of this project is to built and deploy interactive dashboards of differnet issues in the Agriculture and Food systems, using open data sources, data analysis and  web deployment to give the user the ability to interact with the data. 
+This result is part of the project Data Rural Hub, developeded in the Challenge Hub Program 2021 at the [Center for Research and Interdisciplinarity -CRI- ](https://cri-paris.org/en).
+The aim of this study is to explore the digital solutions transforming the food systems towards sustainability, and develop a tool –DataRuraHub- to share the results to support the decision making in the digital transformation of the food systems.
+
+built and deploy interactive dashboards of differnet issues in the Agriculture and Food systems, using open data sources, data analysis and  web deployment to give the user the ability to interact with the data. 
 
 # Data-driven Solutions Transforming the Food Systems
 Explore Data-Driven Agri-Food Solutions withInteractive Dashboards 
@@ -36,6 +38,12 @@ Explore Data-Driven Agri-Food Solutions withInteractive Dashboards
  The dataset are from: 
  
  https://github.com/merlynjocol/DataRuralHub_FoodSystem_DigitalTechnologies-/blob/main/data/food_tech.csv   🔴
+ 
+ # Poster
+ The poster can download from here: 
+ https://drive.google.com/file/d/12g-hN7MbwprYKjHjx7pvH7AYpJkoUTO2/view?usp=sharing
+ 
+ # Final presentation
  
  # Licensing
 
