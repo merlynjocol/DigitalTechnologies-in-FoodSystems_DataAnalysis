@@ -56,8 +56,8 @@ st.sidebar.subheader('''Navigation''')
 #st.sidebar.button("3. Tools", key="2")
 #st.sidebar.button("4. About", key="2")
 
-new_choice = ['Home','Production','Consumption','Social','Climate change']
-choice = st.sidebar.radio("Select",('Digital Solutions','Food Issues','Documentation'),)
+#new_choice = ['Home','Production','Consumption','Social','Climate change']
+choice = st.sidebar.radio("Select",('Home', 'Digital Solutions','Food Issues','Documentation'),)
 
 
 st.sidebar.markdown("ℹ️ All the Charts are interactive. Scroll the mouse over the Charts to feel the interactive features like Tool tip, Zoom, Pan")
@@ -331,530 +331,544 @@ fig.update_layout(
         ),height=400, margin={"r":1,"t":1,"l":1,"b":1},
     )
 
+# finally get to whats on each page
+if choice == 'Home':
+    # TITLE AND HEADER
 
-# TITLE AND HEADER
-
-# framework in columns
-col1, col2, col3 = st.beta_columns([3, 0.5, 5])
-
-with col1:
-    st.title("Digital Solutions Towards Sustainable Agriculture")
-    #st.markdown ('<p style= "font-family:Verdana; color:Black; font-size: 20px;">Interactive Dashboards </p>', unsafe_allow_html=True)
-    st.write(':chart_with_upwards_trend: A total of 67 data-driven innovations were selected, which were narrowed down to those with relevant actions in the transformation of the food systems. Below is the distribution based on countries')
-             
-with col2:
-    st.write(" ")
-    
-with col3:
-    st.plotly_chart(fig) #use_container_width=True
-
-
-st.markdown ('---')
-# KEY PRINCIPLES 
-st.subheader('Key principles of sustainability for food and agriculture')
-st.write('Principle 1.Improving efficiency in the use of resources is crucial  to sustainable agriculture')
-st.write('Principle 2. Sustainability requires direct action to conserve, protect  and enhance natural resources')
-st.write('Principle 3.Agriculture that fails to protect and improve rural  livelihoods, equity and social well-being is unsustainable')
-st.write('Principle 4. Enhanced resilience of people, communities and ecosystems  is key to sustainable agriculture')
-st.markdown ('<p style= "font-family:Verdana; color:Black; font-size: 10px;">FAO. 2018. Interactive Dashboards </p>', unsafe_allow_html=True)
-st.markdown ('---')
-
-
-
-# CONTAINER 2
-st.title("Geographical Profile of  the Digital Solutions Selected")
-st.write('In this section you can located the digital solutions selected by country')
-#st.text (' Select a TECHNOLOGY, the solutions using this technology will show on the map.')
-#st.write ('If you want to know more about specific country or specific technology keep going, there are more interactive dashboards!')
-#The data considered for this analysis is collected from different sources (papers, oficial reports and websites) during 2021')
-
-df_total = all_countries.groupby(['Country', 'Latitude', 'Longitude', 'Key Action'])['App_name'].count().reset_index()
-
-map_all = px.scatter_mapbox(
-                            df_total, 
-                            lat='Latitude', 
-                            lon='Longitude', 
-                            hover_name='Country', 
-                            hover_data=["App_name"],
-                            color_discrete_sequence=["fuchsia"], 
-                            zoom=1, 
-                            width = 800, height=500,
-                            size="App_name",              
-                            )
-
-map_all.update_layout(mapbox_style="open-street-map")
-
-map_all.update_layout(title_text = ' ', 
-                       title_font_size = 20,
-                       #title_font=dict( size=20, family='Verdana', color='Black'),
-                      showlegend = True,  legend_title=dict(text='<b>Key Principles</b>- Click to toggle the key principles'), 
-                       legend = {'xanchor':'auto', 'font':{'size':10}},
-                      margin={"r":0,"t":60,"l":0,"b":1})
-
 
-
-
-# Barchart Y= Coutries X= Total
-df_total_sorted = df_total.sort_values(by= "App_name", ascending=True)
-bar_all = px.bar(df_total_sorted, x="App_name", y="Country", width= 450, height=500, )
-bar_all .update_layout(plot_bgcolor= "white")
-bar_all .update_layout(title = "  ", title_font_size = 20)
-bar_all .update_traces(marker_color='#00aae6', opacity = 0.8)
-bar_all .update_yaxes(tickmode="array", title_text= " ")
-bar_all .update_xaxes(title_text = 'Number of Digital Technologies by Country',
-                range = (0,15), 
-                title_font=dict( size=15, family='Verdana', color='Black'), 
-                tickfont=dict( size=15, family='Verdana', color='Black'),
-                tickmode="array",
-                visible= True,
-                color= 'black',
-                showgrid = True,
-                gridcolor = '#abd3df')
-
-
-
-# CONTAINER MAIN
-
-
-col1, col2, col3 = st.beta_columns([3,0.5,2])
-with col1:
-    st.plotly_chart(map_all, unsafe_allow_html=True)
-    
-with col2:
-    st.write(" ")
-with col3:
-    st.plotly_chart(bar_all, unsafe_allow_html=True)
-
-st.markdown ('---')
-# SELECTORS 
-
-#  SELECTING TECHNOLOGIES
-
-st.title("Techologies and the relation with the principles of sustainable agriculture")
-st.write('In this section you select theTechnology behind of the solution and you can the key principles related.')
-
-tech = st.selectbox("SELECT A TECHNOLOGY", tech_total2['Tech'].unique(), key ='map')
-
-col = ['Country', 'Latitude', 'Longitude', tech, 'Key Action']
-all_countries_col =  all_countries[col].reset_index(drop = True)
-all_countries_col.rename(columns={ all_countries_col.columns[3]: "tech" }, inplace = True)
-
-# MAP_WORLDWIDE SELECTING TECHNOLOGIES 
-map_tech = px.scatter_mapbox(all_countries_col, 
-                            lat='Latitude', 
-                            lon='Longitude', 
-                            color= 'Key Action',
-                            hover_name='Country', 
-                            hover_data=["Country", "tech"],
-                            zoom=1, 
-                            opacity = 0.6,
-                            width = 1000, height=500,
-                            size="tech",              
-                            )
-
-map_tech.update_layout(mapbox_style="open-street-map")
-map_tech.update_layout(title_text = '', 
-                       title_font_size = 20,
-                       #title_font=dict( size=20, family='Verdana', color='Black'),
-                      showlegend = True,  legend_title=dict(text='<b>Key Principles</b>- Click to toggle the key principles'), 
-                       legend = {'xanchor':'auto', 'font':{'size':10}},
-                      margin={"r":0,"t":60,"l":0,"b":1})
-
-
-       
-st.plotly_chart(map_tech, unsafe_allow_html=True)
-# Data Source
-st.write("Source: Hurtado, M. (2021). Data-driven solutions towards sustainable agri-food systems. Dataset Available here: [link](https://github.com/merlynjocol/DataRuralHub_Data_driven_Solutions_Transforming_Food_systems/blob/bed77e92d26426d5e64cfee13ecd9305ba5db68a/data/food_tech.csv)")
-
-
-st.markdown ('---')        
-
-
-# THIRD CONTAINER  TYPES OF TECHNOLOGY WORDCLOUD
-st.markdown ('---')
-
-st.title('Digital Solutions driven the transformation of Agriculture and Food Systems at small-holder farmers')
-st.write('This section you can find the technologies most used by country. Also, you can find information related the level of deployment, ownership, and more important principles to addres by country')
-
-# SELECTING VARIABLES
-col1, col2, col3 = st.beta_columns([1,1,1])
-with col1:
-    country = st.selectbox("Select a Country", all_countries['Country'].unique(), key= 'tech')
-with col2:
-    st.write(" ")
-    #principle= st.selectbox("Select a Principle of Transformation", all_countries['Key Action'].unique(), key= 'tech')
-with col3:
-    st.write(" ")
-
-
-
-#CHARTS WORDCLOUD
-data1 = tech_total1.set_index('Tech').to_dict()['Total']
-
-wc1 = WordCloud(width = 300,   
-                  background_color ='white',
-                 max_words=200, colormap="cool_r").generate_from_frequencies(data1)
-    
-    
-# plot the WordCloud image                        
-wc = plt.figure(figsize = (20,10), facecolor = None) 
-wc = plt.imshow(wc1, interpolation = 'nearest') 
-wc = plt.axis("off") 
-wc = plt.tight_layout(pad = 0) 
-
-#eliminate the error deprecation from matplotlib
-st.set_option('deprecation.showPyplotGlobalUse', False)
-
-
-#CHART BUBBLE
-
-buble1 = px.scatter(tech_total3, x = 'Total', y = 'Tech', size = 'Total', height=400)
-buble1.update_layout(plot_bgcolor= "white", title = "Which technologies are using in the Food Systems?", title_font_size = 20)
-buble1.update_traces(marker_color='#00aae6', opacity = 0.8)
-buble1.update_yaxes(tickmode="array", title_text= " ")
-buble1.update_xaxes(title_text = 'Number of Digital Technologies',
-                range = (0,15), 
-                title_font=dict( size=15, family='Verdana', color='Black'), 
-                tickfont=dict( size=15, family='Verdana', color='Black'),
-                tickmode="array",
-                visible= True,
-                color= 'black',
-                showgrid = True,
-                gridcolor = '#abd3df')
-#fig3.update_layout(autosize= True)
-
-
-
-fig3 = go.Figure()
-#sizeref = 2.*max(tech_total1['Country'])*2
-
-fig3.add_trace(go.Scatter(
-                          x = tech_total3['Total'], y = tech_total3['Tech'],
-                          mode = 'markers',
-                          name = 'Number of solutions',
-                          marker = dict(colorscale = 'magma',
-                            cmax=40,
-                            cmin=0,
-                          opacity = 0.8, size = tech_total1['Total']*25,
-                          symbol =  "circle",
-                          sizemode = 'area', 
-                          showscale = False
-                          )))
-                        
-fig3.update_layout(plot_bgcolor= "white", title = "Which technologies are using in the Food Systems?", title_font_size = 20)
-fig3.update_traces(marker_color='#00aae6', opacity = 0.8)
-fig3.update_yaxes(tickmode="array", title_text= " ")
-fig3.update_layout(legend=dict(
-                               yanchor="top", y=0.99,
-                               xanchor="left",x=0.01),
-                               legend_font_size= 20,
-                               showlegend = False)
-
-fig3.update_xaxes(title_text = 'Number of Digital Solutions',range = (0,30), title_font=dict(size=15, family='Verdana', 
-                                  color='Black'), tickfont=dict(family='Calibri', color='black', 
-                                 size=15))
-
-fig3.update_yaxes(title_text = " ", title_font=dict(size=30, family='Verdana', 
-                                  color='orange'),tickfont=dict(family='Calibri', color='black', 
-                                size=15))
-fig3.update_xaxes(title_text = 'Number of Digital Technologies',
-                range = (0,15), 
-                title_font=dict( size=15, family='Verdana', color='Black'), 
-                tickfont=dict( size=15, family='Verdana', color='Black'),
-                tickmode="array",
-                visible= True,
-                color= 'black',
-                showgrid = True,
-                gridcolor = '#abd3df')
-
-col1, col2, col3 = st.beta_columns([2,0.5,2])
-with col1:
-    st.pyplot(wc, unsafe_allow_html=True)
-    
-with col2:
-    st.write(" ")
-with col3:
-    st.plotly_chart(fig3, unsafe_allow_html=True)
-
-st.markdown ('---')
-
-
-
-#CHART LEVEL
-
-figlevel = px.bar(level, x="Total", y="Level", width= 450)
-figlevel.update_layout(plot_bgcolor= "white")
-figlevel.update_layout(title = "  ", title_font_size = 20)
-figlevel.update_traces(marker_color='#00aae6', opacity = 0.8)
-figlevel.update_yaxes(tickmode="array", title_text= " ")
-figlevel.update_xaxes(title_text = 'Number of Digital Technologies',
-                range = (0,65), 
-                title_font=dict( size=15, family='Verdana', color='Black'), 
-                tickfont=dict( size=15, family='Verdana', color='Black'),
-                tickmode="array",
-                visible= True,
-                color= 'black',
-                showgrid = True,
-                gridcolor = '#abd3df')
-
-
-#fig3.update_layout(autosize= True)
-
-pro_poor = foodtech.groupby("Pro_poor focus?").sum().reset_index()
-
-
-fig_pie = px.pie(foodtech, values='No', names='Pro_poor focus?', color='Pro_poor focus?',
-             color_discrete_map={'Yes':'royalblue',
-                                 'No ':"#2a2b5a",
-                                 'Not sure': '#e51858' #0bca9b'
-                                }, opacity =0.8, width=500,
-    height=500 )
-
-
-#fig.update_traces(textposition='inside', textinfo='percent+text')
-fig_pie.update_traces(pull=[1,1,0.05])
-
-
-
-#CHART ONNERSHIP
-
-col1, col2, col3 = st.beta_columns([2,0.5,2])
-
-with col1:
-    country = st.selectbox("Select a Country", all_countries['Country'].unique(), key= 'level')
-    st.title('level/scale of deployment')
-    st.plotly_chart(figlevel,unsafe_allow_html=True )
-    
-with col2:
-    st.write(" ")
-with col3:
-    country = st.selectbox("Select a Country", all_countries['Country'].unique(), key= 'pro-poor')
-    st.title('Pro-poor focus solutions')
-    st.plotly_chart(fig_pie, unsafe_allow_html=True)
-
-st.markdown ('---')
-
-#df_donors = total_donors1.groupby("class")['Total'].sum()
-#df_donors1 = df_donors.to_frame().sort_values(by= "Total", ascending=True).reset_index()
-
-figDonors = px.bar(df_donors1, x="Total", y="class",width = 700, height = 400)
-figDonors.update_layout(plot_bgcolor= "white")
-figDonors.update_layout(title = "  ", title_font_size = 20)
-figDonors.update_traces(marker_color='#00aae6', opacity = 0.8)
-figDonors.update_yaxes(tickmode="array", title_text= " ")
-figDonors.update_xaxes(title_text = 'Number of Digital Technologies',
-                range = (0,40), 
-                title_font=dict( size=15, family='Verdana', color='Black'), 
-                tickfont=dict( size=15, family='Verdana', color='Black'),
-                tickmode="array",
-                visible= True,
-                color= 'black',
-                showgrid = True,
-                gridcolor = '#abd3df')
-
-
-#principles
-tech_principles = total_map.groupby('Key Action').agg({'App_name': 'count', 
-                                                  'AI & Machine learning': 'sum',
-                                                  'Big data': 'sum',
-                                                  'Blockchain': 'sum',
-                                                  'Chatbot':'sum',
-                                                   'Data Analytics': 'sum', 
-                                                  'Data Visualization': 'sum',
-                                                  'GIS/RemoteSensing': 'sum',
-                                                  'IVR': 'sum',
-                                                  'IoT': 'sum',
-                                                   'Machinery': 'sum',
-                                                  'Management Software': 'sum', 
-                                                  'Mobile - Advisory': 'sum',
-                                                   'Platform data-sharing': 'sum', 
-                                                  'Precision Farming ': 'sum',
-                                                  'QR Codes': 'sum',
-                                                  'SMS': 'sum',
-                                                    'Sensors': 'sum',
-                                                  'Smart appliance': 'sum', 
-                                                  'Smart equipment & Hardware': 'sum',
-                                                   'Social Media': 'sum', 
-                                                  'UAV / Drones': 'sum', 
-                                                  'USSD': 'sum',
-                                                  'Video': 'sum', 
-                                                  'Weareables': 'sum',
-                                                    'Website ': 'sum' }).reset_index()
-
-
-
-tech_owner = total_map.groupby('Ownership').agg({'App_name': 'count', 
-                                                  'AI & Machine learning': 'sum',
-                                                  'Big data': 'sum',
-                                                  'Blockchain': 'sum',
-                                                  'Chatbot':'sum',
-                                                   'Data Analytics': 'sum', 
-                                                  'Data Visualization': 'sum',
-                                                  'GIS/RemoteSensing': 'sum',
-                                                  'IVR': 'sum',
-                                                  'IoT': 'sum',
-                                                   'Machinery': 'sum',
-                                                  'Management Software': 'sum', 
-                                                  'Mobile - Advisory': 'sum',
-                                                   'Platform data-sharing': 'sum', 
-                                                  'Precision Farming ': 'sum',
-                                                  'QR Codes': 'sum',
-                                                  'SMS': 'sum',
-                                                    'Sensors': 'sum',
-                                                  'Smart appliance': 'sum', 
-                                                  'Smart equipment & Hardware': 'sum',
-                                                   'Social Media': 'sum', 
-                                                  'UAV / Drones': 'sum', 
-                                                  'USSD': 'sum',
-                                                  'Video': 'sum', 
-                                                  'Weareables': 'sum',
-                                                    'Website ': 'sum' }).reset_index()
-
-owner = tech_owner.sort_values(by= "App_name", ascending=True)
-
-figO = go.Figure()
-
-figO.add_trace(go.Bar(
-    x=owner['App_name'],
-    y = owner['Ownership'], 
-    orientation='h', 
-    opacity = 0.8
-))
-
-figO.update_layout(
-    autosize=False,
-    width=500,
-    height=500,
-    yaxis=dict(
-        title_text=" ",
-        #ticktext=["Very long label", "long label", "3", "label"],
-        #tickvals=[1, 2, 3, 4,5,6],
-        tickmode="array",
-        titlefont=dict(size=30),
-    )
-)
-
-                 
-
-figO.update_layout(title = "Who is the owner of the digital solutions?",
-                   title_font_size = 20, template = 'plotly_white',
-                   width = 600, height = 400)
-
-figO.update_xaxes(
-        title_text = 'Number of digital technolgies',
-        range = (0,10), 
-        title_font=dict(
-                        size=15, 
-                        family='Verdana', 
-                        color='Black'), 
-        tickfont=dict(
-                        family='Calibri',
-                        color='black', 
-                        size=15),
-        tickmode="array",
-        showgrid = True
+    # TITLE AND HEADER
+
+    # framework in columns
+    col1, col2, col3 = st.beta_columns([3, 0.5, 5])
+
+    with col1:
+        st.title("Digital Solutions Towards Sustainable Agriculture")
+        #st.markdown ('<p style= "font-family:Verdana; color:Black; font-size: 20px;">Interactive Dashboards </p>', unsafe_allow_html=True)
+        st.write(':chart_with_upwards_trend: A total of 67 data-driven innovations were selected, which were narrowed down to those with relevant actions in the transformation of the food systems. Below is the distribution based on countries')
+
+    with col2:
+        st.write(" ")
+
+    with col3:
+        st.plotly_chart(fig) #use_container_width=True
+
+
+    st.markdown ('---')
+    # KEY PRINCIPLES 
+    st.subheader('Key principles of sustainability for food and agriculture')
+    st.write('Principle 1.Improving efficiency in the use of resources is crucial  to sustainable agriculture')
+    st.write('Principle 2. Sustainability requires direct action to conserve, protect  and enhance natural resources')
+    st.write('Principle 3.Agriculture that fails to protect and improve rural  livelihoods, equity and social well-being is unsustainable')
+    st.write('Principle 4. Enhanced resilience of people, communities and ecosystems  is key to sustainable agriculture')
+    st.markdown ('<p style= "font-family:Verdana; color:Black; font-size: 10px;">FAO. 2018. Interactive Dashboards </p>', unsafe_allow_html=True)
+    st.markdown ('---')
+
+
+elif choice == 'Digital Solutions':
+
+    # CONTAINER 2
+    st.title("Geographical Profile of  the Digital Solutions Selected")
+    st.write('In this section you can located the digital solutions selected by country')
+    #st.text (' Select a TECHNOLOGY, the solutions using this technology will show on the map.')
+    #st.write ('If you want to know more about specific country or specific technology keep going, there are more interactive dashboards!')
+    #The data considered for this analysis is collected from different sources (papers, oficial reports and websites) during 2021')
+
+    df_total = all_countries.groupby(['Country', 'Latitude', 'Longitude', 'Key Action'])['App_name'].count().reset_index()
+
+    map_all = px.scatter_mapbox(
+                                df_total, 
+                                lat='Latitude', 
+                                lon='Longitude', 
+                                hover_name='Country', 
+                                hover_data=["App_name"],
+                                color_discrete_sequence=["fuchsia"], 
+                                zoom=1, 
+                                width = 800, height=500,
+                                size="App_name",              
+                                )
+
+    map_all.update_layout(mapbox_style="open-street-map")
+
+    map_all.update_layout(title_text = ' ', 
+                           title_font_size = 20,
+                           #title_font=dict( size=20, family='Verdana', color='Black'),
+                          showlegend = True,  legend_title=dict(text='<b>Key Principles</b>- Click to toggle the key principles'), 
+                           legend = {'xanchor':'auto', 'font':{'size':10}},
+                          margin={"r":0,"t":60,"l":0,"b":1})
+
+
+
+
+    # Barchart Y= Coutries X= Total
+    df_total_sorted = df_total.sort_values(by= "App_name", ascending=True)
+    bar_all = px.bar(df_total_sorted, x="App_name", y="Country", width= 450, height=500, )
+    bar_all .update_layout(plot_bgcolor= "white")
+    bar_all .update_layout(title = "  ", title_font_size = 20)
+    bar_all .update_traces(marker_color='#00aae6', opacity = 0.8)
+    bar_all .update_yaxes(tickmode="array", title_text= " ")
+    bar_all .update_xaxes(title_text = 'Number of Digital Technologies by Country',
+                    range = (0,15), 
+                    title_font=dict( size=15, family='Verdana', color='Black'), 
+                    tickfont=dict( size=15, family='Verdana', color='Black'),
+                    tickmode="array",
+                    visible= True,
+                    color= 'black',
+                    showgrid = True,
+                    gridcolor = '#abd3df')
+
+
+
+    # CONTAINER MAIN
+
+
+    col1, col2, col3 = st.beta_columns([3,0.5,2])
+    with col1:
+        st.plotly_chart(map_all, unsafe_allow_html=True)
+
+    with col2:
+        st.write(" ")
+    with col3:
+        st.plotly_chart(bar_all, unsafe_allow_html=True)
+
+    st.markdown ('---')
+    # SELECTORS 
+
+    #  SELECTING TECHNOLOGIES
+
+    st.title("Techologies and the relation with the principles of sustainable agriculture")
+    st.write('In this section you select theTechnology behind of the solution and you can the key principles related.')
+
+    tech = st.selectbox("SELECT A TECHNOLOGY", tech_total2['Tech'].unique(), key ='map')
+
+    col = ['Country', 'Latitude', 'Longitude', tech, 'Key Action']
+    all_countries_col =  all_countries[col].reset_index(drop = True)
+    all_countries_col.rename(columns={ all_countries_col.columns[3]: "tech" }, inplace = True)
+
+    # MAP_WORLDWIDE SELECTING TECHNOLOGIES 
+    map_tech = px.scatter_mapbox(all_countries_col, 
+                                lat='Latitude', 
+                                lon='Longitude', 
+                                color= 'Key Action',
+                                hover_name='Country', 
+                                hover_data=["Country", "tech"],
+                                zoom=1, 
+                                opacity = 0.6,
+                                width = 1000, height=500,
+                                size="tech",              
+                                )
+
+    map_tech.update_layout(mapbox_style="open-street-map")
+    map_tech.update_layout(title_text = '', 
+                           title_font_size = 20,
+                           #title_font=dict( size=20, family='Verdana', color='Black'),
+                          showlegend = True,  legend_title=dict(text='<b>Key Principles</b>- Click to toggle the key principles'), 
+                           legend = {'xanchor':'auto', 'font':{'size':10}},
+                          margin={"r":0,"t":60,"l":0,"b":1})
+
+
+
+    st.plotly_chart(map_tech, unsafe_allow_html=True)
+    # Data Source
+    st.write("Source: Hurtado, M. (2021). Data-driven solutions towards sustainable agri-food systems. Dataset Available here: [link](https://github.com/merlynjocol/DataRuralHub_Data_driven_Solutions_Transforming_Food_systems/blob/bed77e92d26426d5e64cfee13ecd9305ba5db68a/data/food_tech.csv)")
+
+
+    st.markdown ('---')        
+
+
+    # THIRD CONTAINER  TYPES OF TECHNOLOGY WORDCLOUD
+    st.markdown ('---')
+
+    st.title('Digital Solutions driven the transformation of Agriculture and Food Systems at small-holder farmers')
+    st.write('This section you can find the technologies most used by country. Also, you can find information related the level of deployment, ownership, and more important principles to addres by country')
+
+    # SELECTING VARIABLES
+    col1, col2, col3 = st.beta_columns([1,1,1])
+    with col1:
+        country = st.selectbox("Select a Country", all_countries['Country'].unique(), key= 'tech')
+    with col2:
+        st.write(" ")
+        #principle= st.selectbox("Select a Principle of Transformation", all_countries['Key Action'].unique(), key= 'tech')
+    with col3:
+        st.write(" ")
+
+
+
+    #CHARTS WORDCLOUD
+    data1 = tech_total1.set_index('Tech').to_dict()['Total']
+
+    wc1 = WordCloud(width = 300,   
+                      background_color ='white',
+                     max_words=200, colormap="cool_r").generate_from_frequencies(data1)
+
+
+    # plot the WordCloud image                        
+    wc = plt.figure(figsize = (20,10), facecolor = None) 
+    wc = plt.imshow(wc1, interpolation = 'nearest') 
+    wc = plt.axis("off") 
+    wc = plt.tight_layout(pad = 0) 
+
+    #eliminate the error deprecation from matplotlib
+    st.set_option('deprecation.showPyplotGlobalUse', False)
+
+
+    #CHART BUBBLE
+
+    buble1 = px.scatter(tech_total3, x = 'Total', y = 'Tech', size = 'Total', height=400)
+    buble1.update_layout(plot_bgcolor= "white", title = "Which technologies are using in the Food Systems?", title_font_size = 20)
+    buble1.update_traces(marker_color='#00aae6', opacity = 0.8)
+    buble1.update_yaxes(tickmode="array", title_text= " ")
+    buble1.update_xaxes(title_text = 'Number of Digital Technologies',
+                    range = (0,15), 
+                    title_font=dict( size=15, family='Verdana', color='Black'), 
+                    tickfont=dict( size=15, family='Verdana', color='Black'),
+                    tickmode="array",
+                    visible= True,
+                    color= 'black',
+                    showgrid = True,
+                    gridcolor = '#abd3df')
+    #fig3.update_layout(autosize= True)
+
+
+
+    fig3 = go.Figure()
+    #sizeref = 2.*max(tech_total1['Country'])*2
+
+    fig3.add_trace(go.Scatter(
+                              x = tech_total3['Total'], y = tech_total3['Tech'],
+                              mode = 'markers',
+                              name = 'Number of solutions',
+                              marker = dict(colorscale = 'magma',
+                                cmax=40,
+                                cmin=0,
+                              opacity = 0.8, size = tech_total1['Total']*25,
+                              symbol =  "circle",
+                              sizemode = 'area', 
+                              showscale = False
+                              )))
+
+    fig3.update_layout(plot_bgcolor= "white", title = "Which technologies are using in the Food Systems?", title_font_size = 20)
+    fig3.update_traces(marker_color='#00aae6', opacity = 0.8)
+    fig3.update_yaxes(tickmode="array", title_text= " ")
+    fig3.update_layout(legend=dict(
+                                   yanchor="top", y=0.99,
+                                   xanchor="left",x=0.01),
+                                   legend_font_size= 20,
+                                   showlegend = False)
+
+    fig3.update_xaxes(title_text = 'Number of Digital Solutions',range = (0,30), title_font=dict(size=15, family='Verdana', 
+                                      color='Black'), tickfont=dict(family='Calibri', color='black', 
+                                     size=15))
+
+    fig3.update_yaxes(title_text = " ", title_font=dict(size=30, family='Verdana', 
+                                      color='orange'),tickfont=dict(family='Calibri', color='black', 
+                                    size=15))
+    fig3.update_xaxes(title_text = 'Number of Digital Technologies',
+                    range = (0,15), 
+                    title_font=dict( size=15, family='Verdana', color='Black'), 
+                    tickfont=dict( size=15, family='Verdana', color='Black'),
+                    tickmode="array",
+                    visible= True,
+                    color= 'black',
+                    showgrid = True,
+                    gridcolor = '#abd3df')
+
+    col1, col2, col3 = st.beta_columns([2,0.5,2])
+    with col1:
+        st.pyplot(wc, unsafe_allow_html=True)
+
+    with col2:
+        st.write(" ")
+    with col3:
+        st.plotly_chart(fig3, unsafe_allow_html=True)
+
+    st.markdown ('---')
+
+
+
+    #CHART LEVEL
+
+    figlevel = px.bar(level, x="Total", y="Level", width= 450)
+    figlevel.update_layout(plot_bgcolor= "white")
+    figlevel.update_layout(title = "  ", title_font_size = 20)
+    figlevel.update_traces(marker_color='#00aae6', opacity = 0.8)
+    figlevel.update_yaxes(tickmode="array", title_text= " ")
+    figlevel.update_xaxes(title_text = 'Number of Digital Technologies',
+                    range = (0,65), 
+                    title_font=dict( size=15, family='Verdana', color='Black'), 
+                    tickfont=dict( size=15, family='Verdana', color='Black'),
+                    tickmode="array",
+                    visible= True,
+                    color= 'black',
+                    showgrid = True,
+                    gridcolor = '#abd3df')
+
+
+    #fig3.update_layout(autosize= True)
+
+    pro_poor = foodtech.groupby("Pro_poor focus?").sum().reset_index()
+
+
+    fig_pie = px.pie(foodtech, values='No', names='Pro_poor focus?', color='Pro_poor focus?',
+                 color_discrete_map={'Yes':'royalblue',
+                                     'No ':"#2a2b5a",
+                                     'Not sure': '#e51858' #0bca9b'
+                                    }, opacity =0.8, width=500,
+        height=500 )
+
+
+    #fig.update_traces(textposition='inside', textinfo='percent+text')
+    fig_pie.update_traces(pull=[1,1,0.05])
+
+
+
+    #CHART ONNERSHIP
+
+    col1, col2, col3 = st.beta_columns([2,0.5,2])
+
+    with col1:
+        country = st.selectbox("Select a Country", all_countries['Country'].unique(), key= 'level')
+        st.title('level/scale of deployment')
+        st.plotly_chart(figlevel,unsafe_allow_html=True )
+
+    with col2:
+        st.write(" ")
+    with col3:
+        country = st.selectbox("Select a Country", all_countries['Country'].unique(), key= 'pro-poor')
+        st.title('Pro-poor focus solutions')
+        st.plotly_chart(fig_pie, unsafe_allow_html=True)
+
+    st.markdown ('---')
+
+    #df_donors = total_donors1.groupby("class")['Total'].sum()
+    #df_donors1 = df_donors.to_frame().sort_values(by= "Total", ascending=True).reset_index()
+
+    figDonors = px.bar(df_donors1, x="Total", y="class",width = 700, height = 400)
+    figDonors.update_layout(plot_bgcolor= "white")
+    figDonors.update_layout(title = "  ", title_font_size = 20)
+    figDonors.update_traces(marker_color='#00aae6', opacity = 0.8)
+    figDonors.update_yaxes(tickmode="array", title_text= " ")
+    figDonors.update_xaxes(title_text = 'Number of Digital Technologies',
+                    range = (0,40), 
+                    title_font=dict( size=15, family='Verdana', color='Black'), 
+                    tickfont=dict( size=15, family='Verdana', color='Black'),
+                    tickmode="array",
+                    visible= True,
+                    color= 'black',
+                    showgrid = True,
+                    gridcolor = '#abd3df')
+
+
+    #principles
+    tech_principles = total_map.groupby('Key Action').agg({'App_name': 'count', 
+                                                      'AI & Machine learning': 'sum',
+                                                      'Big data': 'sum',
+                                                      'Blockchain': 'sum',
+                                                      'Chatbot':'sum',
+                                                       'Data Analytics': 'sum', 
+                                                      'Data Visualization': 'sum',
+                                                      'GIS/RemoteSensing': 'sum',
+                                                      'IVR': 'sum',
+                                                      'IoT': 'sum',
+                                                       'Machinery': 'sum',
+                                                      'Management Software': 'sum', 
+                                                      'Mobile - Advisory': 'sum',
+                                                       'Platform data-sharing': 'sum', 
+                                                      'Precision Farming ': 'sum',
+                                                      'QR Codes': 'sum',
+                                                      'SMS': 'sum',
+                                                        'Sensors': 'sum',
+                                                      'Smart appliance': 'sum', 
+                                                      'Smart equipment & Hardware': 'sum',
+                                                       'Social Media': 'sum', 
+                                                      'UAV / Drones': 'sum', 
+                                                      'USSD': 'sum',
+                                                      'Video': 'sum', 
+                                                      'Weareables': 'sum',
+                                                        'Website ': 'sum' }).reset_index()
+
+
+
+    tech_owner = total_map.groupby('Ownership').agg({'App_name': 'count', 
+                                                      'AI & Machine learning': 'sum',
+                                                      'Big data': 'sum',
+                                                      'Blockchain': 'sum',
+                                                      'Chatbot':'sum',
+                                                       'Data Analytics': 'sum', 
+                                                      'Data Visualization': 'sum',
+                                                      'GIS/RemoteSensing': 'sum',
+                                                      'IVR': 'sum',
+                                                      'IoT': 'sum',
+                                                       'Machinery': 'sum',
+                                                      'Management Software': 'sum', 
+                                                      'Mobile - Advisory': 'sum',
+                                                       'Platform data-sharing': 'sum', 
+                                                      'Precision Farming ': 'sum',
+                                                      'QR Codes': 'sum',
+                                                      'SMS': 'sum',
+                                                        'Sensors': 'sum',
+                                                      'Smart appliance': 'sum', 
+                                                      'Smart equipment & Hardware': 'sum',
+                                                       'Social Media': 'sum', 
+                                                      'UAV / Drones': 'sum', 
+                                                      'USSD': 'sum',
+                                                      'Video': 'sum', 
+                                                      'Weareables': 'sum',
+                                                        'Website ': 'sum' }).reset_index()
+
+    owner = tech_owner.sort_values(by= "App_name", ascending=True)
+
+    figO = go.Figure()
+
+    figO.add_trace(go.Bar(
+        x=owner['App_name'],
+        y = owner['Ownership'], 
+        orientation='h', 
+        opacity = 0.8
+    ))
+
+    figO.update_layout(
+        autosize=False,
+        width=500,
+        height=500,
+        yaxis=dict(
+            title_text=" ",
+            #ticktext=["Very long label", "long label", "3", "label"],
+            #tickvals=[1, 2, 3, 4,5,6],
+            tickmode="array",
+            titlefont=dict(size=30),
         )
-
-figO.update_yaxes(
-                    #title_text = " Deployment Level", 
-                    title_font=dict(
-                                    size=30, 
-                                    family='Verdana', 
-                                    color='orange'),
-                    tickfont=dict(
-                                family='Calibri', 
-                                color='black', 
-                                size=15),
-                    )
-
-figO.update_layout(legend=dict(
-                               yanchor="top", y=0.99,
-                               xanchor="left",x=0.01),
-                               legend_font_size= 20,
-                               showlegend = False)
-
-#PRINCIPLES
-principle = tech_principles.sort_values(by= "App_name", ascending=True)
-figP = go.Figure()
-
-figP.add_trace(go.Bar(
-    x=principle['App_name'],
-    y = principle['Key Action'], 
-    orientation='h', 
-    opacity = 0.8
-))
-
-figP.update_layout(
-    autosize=False,
-    width=500,
-    height=500,
-    yaxis=dict(
-        title_text=" ",
-        #ticktext=["Very long label", "long label", "3", "label"],
-        #tickvals=[1, 2, 3, 4,5,6],
-        tickmode="array",
-        titlefont=dict(size=30),
     )
-)
 
-                 
 
-figP.update_layout(title = "Which of the following key actions the digital technologies support?",
-                   title_font_size = 20, template = 'plotly_white',
-                   width = 1100, height = 400)
 
-figP.update_xaxes(
-        title_text = 'Number of digital technolgies',
-        range = (0,50), 
-        title_font=dict(
-                        size=15, 
-                        family='Verdana', 
-                        color='Black'), 
-        tickfont=dict(
-                        family='Calibri',
-                        color='black', 
-                        size=15),
-        tickmode="array",
-        showgrid = True
+    figO.update_layout(title = "Who is the owner of the digital solutions?",
+                       title_font_size = 20, template = 'plotly_white',
+                       width = 600, height = 400)
+
+    figO.update_xaxes(
+            title_text = 'Number of digital technolgies',
+            range = (0,10), 
+            title_font=dict(
+                            size=15, 
+                            family='Verdana', 
+                            color='Black'), 
+            tickfont=dict(
+                            family='Calibri',
+                            color='black', 
+                            size=15),
+            tickmode="array",
+            showgrid = True
+            )
+
+    figO.update_yaxes(
+                        #title_text = " Deployment Level", 
+                        title_font=dict(
+                                        size=30, 
+                                        family='Verdana', 
+                                        color='orange'),
+                        tickfont=dict(
+                                    family='Calibri', 
+                                    color='black', 
+                                    size=15),
+                        )
+
+    figO.update_layout(legend=dict(
+                                   yanchor="top", y=0.99,
+                                   xanchor="left",x=0.01),
+                                   legend_font_size= 20,
+                                   showlegend = False)
+
+    #PRINCIPLES
+    principle = tech_principles.sort_values(by= "App_name", ascending=True)
+    figP = go.Figure()
+
+    figP.add_trace(go.Bar(
+        x=principle['App_name'],
+        y = principle['Key Action'], 
+        orientation='h', 
+        opacity = 0.8
+    ))
+
+    figP.update_layout(
+        autosize=False,
+        width=500,
+        height=500,
+        yaxis=dict(
+            title_text=" ",
+            #ticktext=["Very long label", "long label", "3", "label"],
+            #tickvals=[1, 2, 3, 4,5,6],
+            tickmode="array",
+            titlefont=dict(size=30),
         )
-figP.update_yaxes(
-                    #title_text = " Deployment Level", 
-                    title_font=dict(
-                                    size=30, 
-                                    family='Verdana', 
-                                    color='orange'),
-                    tickfont=dict(
-                                family='Calibri', 
-                                color='black', 
-                                size=15),
-                    )
-
-figP.update_layout(legend=dict(
-                               yanchor="top", y=0.99,
-                               xanchor="left",x=0.01),
-                               legend_font_size= 20,
-                               showlegend = False)
+    )
 
 
 
+    figP.update_layout(title = "Which of the following key actions the digital technologies support?",
+                       title_font_size = 20, template = 'plotly_white',
+                       width = 1100, height = 400)
+
+    figP.update_xaxes(
+            title_text = 'Number of digital technolgies',
+            range = (0,50), 
+            title_font=dict(
+                            size=15, 
+                            family='Verdana', 
+                            color='Black'), 
+            tickfont=dict(
+                            family='Calibri',
+                            color='black', 
+                            size=15),
+            tickmode="array",
+            showgrid = True
+            )
+    figP.update_yaxes(
+                        #title_text = " Deployment Level", 
+                        title_font=dict(
+                                        size=30, 
+                                        family='Verdana', 
+                                        color='orange'),
+                        tickfont=dict(
+                                    family='Calibri', 
+                                    color='black', 
+                                    size=15),
+                        )
+
+    figP.update_layout(legend=dict(
+                                   yanchor="top", y=0.99,
+                                   xanchor="left",x=0.01),
+                                   legend_font_size= 20,
+                                   showlegend = False)
 
 
 
-st.markdown ('---')
-country = st.selectbox("Select a Country", all_countries['Country'].unique(), key= 'owner')
-st.title('Owner of the digital solutions?')
-st.plotly_chart(figO,unsafe_allow_html=True )
+
+
+
+    st.markdown ('---')
+    country = st.selectbox("Select a Country", all_countries['Country'].unique(), key= 'owner')
+    st.title('Owner of the digital solutions?')
+    st.plotly_chart(figO,unsafe_allow_html=True )
+
+    st.markdown ('---')
+
+    country = st.selectbox("Select a Country", all_countries['Country'].unique(), key= 'actions')
+    st.title('Actions supported by digital technologies')
+    st.plotly_chart(figP, unsafe_allow_html=True)
+
+
+    #https://www.linkedin.com/pulse/streamlit-enables-sharing-data-impactful-way-kennedy-selvadurai/
+
+
+
+    st.markdown ('---')
+
+ 
+elif choice == 'Food Issues':
     
-st.markdown ('---')
+    st.write("check out this [link](https://merlynjocol-foodissues-interactive-dashboard-food-issues-jhqtbg.streamlit.app/)")
 
-country = st.selectbox("Select a Country", all_countries['Country'].unique(), key= 'actions')
-st.title('Actions supported by digital technologies')
-st.plotly_chart(figP, unsafe_allow_html=True)
-
-
-#https://www.linkedin.com/pulse/streamlit-enables-sharing-data-impactful-way-kennedy-selvadurai/
-
-
-
-st.markdown ('---')
+elif choice == 'Documentation':
+    st.title("* Documentation")
+    st.write("FAO.Transforming Food and Agriculture to Achieve the SDGs. 2018[link](https://www.fao.org/3/CA1647EN/ca1647en.pdf)")
 
