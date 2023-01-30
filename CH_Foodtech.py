@@ -20,6 +20,7 @@ import json
 import streamlit as st #creating an app
 from streamlit_folium import folium_static 
 import folium #using folium on 
+import webbrowser
 
 #import pydeck as pdk
 
@@ -54,6 +55,11 @@ st.sidebar.button("1. Food Issues", key="1")
 st.sidebar.button("2. Digital solutions", key="2")
 st.sidebar.button("3. Tools", key="2")
 st.sidebar.button("4. About", key="2")
+
+
+login =  st.sidebar.button("5.test")
+if login:
+    webbrowser.open(‘http://localhost:8501/Login 25’)
 
 
 st.sidebar.markdown("ℹ️ All the Charts are interactive. Scroll the mouse over the Charts to feel the interactive features like Tool tip, Zoom, Pan")
@@ -354,6 +360,8 @@ st.write('Principle 3.Agriculture that fails to protect and improve rural  livel
 st.write('Principle 4. Enhanced resilience of people, communities and ecosystems  is key to sustainable agriculture')
 st.markdown ('<p style= "font-family:Verdana; color:Black; font-size: 10px;">FAO. 2018. Interactive Dashboards </p>', unsafe_allow_html=True)
 st.markdown ('---')
+
+
 
 # CONTAINER 2
 st.title("Geographical Profile of  the Digital Solutions Selected")
