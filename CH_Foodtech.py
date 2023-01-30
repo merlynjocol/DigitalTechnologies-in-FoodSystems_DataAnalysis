@@ -335,7 +335,7 @@ col1, col2, col3 = st.beta_columns([3, 0.5, 5])
 
 with col1:
     st.title("Digital Solutions Towards Sustainable Agriculture")
-    st.markdown ('<p style= "font-family:Verdana; color:Black; font-size: 20px;">Interactive Dashboards </p>', unsafe_allow_html=True)
+    #st.markdown ('<p style= "font-family:Verdana; color:Black; font-size: 20px;">Interactive Dashboards </p>', unsafe_allow_html=True)
     st.write(':chart_with_upwards_trend: A total of 67 data-driven innovations were selected, which were narrowed down to those with relevant actions in the transformation of the food systems. Below is the distribution based on countries')
              
 with col2:
@@ -347,17 +347,17 @@ with col3:
 
 st.markdown ('---')
 # KEY PRINCIPLES 
-st.subheader('Key principles for sustainability in food and agriculture')
+st.subheader('Key principles of sustainability for food and agriculture')
 st.write('Principle 1.Improving efficiency in the use of resources is crucial  to sustainable agriculture')
 st.write('Principle 2. Sustainability requires direct action to conserve, protect  and enhance natural resources')
 st.write('Principle 3.Agriculture that fails to protect and improve rural  livelihoods, equity and social well-being is unsustainable')
 st.write('Principle 4. Enhanced resilience of people, communities and ecosystems  is key to sustainable agriculture')
-
+st.markdown ('<p style= "font-family:Verdana; color:Black; font-size: 10px;">FAO. 2018. Interactive Dashboards </p>', unsafe_allow_html=True)
 st.markdown ('---')
 
 # CONTAINER 2
-st.title("Geographical Profile of  the Digital Technologies analysed")
-st.write('In this section you can located the technological solutions that works under the fundamental Principles of the trasnformation of Food Systems.')
+st.title("Geographical Profile of  the Digital Solutions Selected")
+st.write('In this section you can located the digital solutions selected by country")
 #st.text (' Select a TECHNOLOGY, the solutions using this technology will show on the map.')
 #st.write ('If you want to know more about specific country or specific technology keep going, there are more interactive dashboards!')
 #The data considered for this analysis is collected from different sources (papers, oficial reports and websites) during 2021')
@@ -424,8 +424,8 @@ st.markdown ('---')
 
 #  SELECTING TECHNOLOGIES
 
-st.title("Techologies by key principle")
-st.write('In this section you select the technological solutions and see what are the key principles.')
+st.title("Techologies and the relation with the principles of sustainable agriculture")
+st.write('In this section you select theTechnology behind of the solution and you can the key principles related.')
 
 tech = st.selectbox("SELECT A TECHNOLOGY", tech_total2['Tech'].unique(), key ='map')
 
@@ -467,8 +467,8 @@ st.markdown ('---')
 # THIRD CONTAINER  TYPES OF TECHNOLOGY WORDCLOUD
 st.markdown ('---')
 
-st.title('What Digital Technologies are driven the transformation of Food Systems?')
-st.write('This section you can find the technologies most used in each country ')
+st.title('Digital Solutions driven the transformation of Agriculture and Food Systems at small-holder farmers')
+st.write('This section you can find the technologies most used by country. Also, you can find information related the level of deployment, ownership, and more important principles to addres by country')
 
 # SELECTING VARIABLES
 col1, col2, col3 = st.beta_columns([1,1,1])
@@ -793,7 +793,7 @@ figP.update_layout(
 
                  
 
-figP.update_layout(title = "Which of the following actions the digital technologies support?",
+figP.update_layout(title = "Which of the following key actions the digital technologies support?",
                    title_font_size = 20, template = 'plotly_white',
                    width = 1100, height = 400)
 
@@ -846,13 +846,14 @@ st.title('Actions supported by digital technologies')
 st.plotly_chart(figP, unsafe_allow_html=True)
 
 
-# https://www.linkedin.com/pulse/streamlit-enables-sharing-data-impactful-way-kennedy-selvadurai/
+#https://www.linkedin.com/pulse/streamlit-enables-sharing-data-impactful-way-kennedy-selvadurai/
 
 
 
 st.markdown ('---')
 
-
+'''
+TABLE OF DONORS 
 new_donor = total_map[['App_name', '1to4 Foundation', 'AIR cargo', 'AK Impact Investors',
        'Accion Venture Lab', 'Acumen', 'Adobe', 'AgReliant Genetics',
        'Anonymous x 3', 'Australian Goverment', 'BRAC Humanitarian Program',
@@ -895,7 +896,7 @@ donor_meltsorted = donor_melt.sort_values(by= "App_name", ascending=True)
 chord1 = hv.Chord(donor_meltsorted )
 st.plotly_chart(chord1,unsafe_allow_html=True )
 
-
+'''
 
 
 
