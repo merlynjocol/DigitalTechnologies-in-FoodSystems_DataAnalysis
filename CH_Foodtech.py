@@ -865,10 +865,11 @@ elif choice == 'Digital Solutions':
 
  
 elif choice == 'Food Issues':
-    
-    st.write("check out this [link](https://merlynjocol-foodissues-interactive-dashboard-food-issues-jhqtbg.streamlit.app/)")
+    st.title("Food Issues")
+    st.markdown ('<p style= "font-family:Verdana; color:Black; font-size: 20px;">📈 Explore the Datadashboards of Food Issues from farm to fork at global scale and national trends </p>', unsafe_allow_html=True)
+    st.write("Check out here [link](https://merlynjocol-foodissues-interactive-dashboard-food-issues-jhqtbg.streamlit.app/)")
 
 elif choice == 'Documentation':
-    st.title("* Documentation")
-    st.write("FAO.Transforming Food and Agriculture to Achieve the SDGs. 2018[link](https://www.fao.org/3/CA1647EN/ca1647en.pdf)")
+    st.title("Documentation")
+    st.write("FAO. Transforming Food and Agriculture to Achieve the SDGs. 2018 [link](https://www.fao.org/3/CA1647EN/ca1647en.pdf)")
 
