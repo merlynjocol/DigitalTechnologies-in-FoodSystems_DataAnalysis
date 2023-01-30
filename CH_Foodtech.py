@@ -357,7 +357,7 @@ st.markdown ('---')
 
 # CONTAINER 2
 st.title("Geographical Profile of  the Digital Solutions Selected")
-st.write('In this section you can located the digital solutions selected by country")
+st.write('In this section you can located the digital solutions selected by country')
 #st.text (' Select a TECHNOLOGY, the solutions using this technology will show on the map.')
 #st.write ('If you want to know more about specific country or specific technology keep going, there are more interactive dashboards!')
 #The data considered for this analysis is collected from different sources (papers, oficial reports and websites) during 2021')
