@@ -51,15 +51,13 @@ st.sidebar.markdown('''Explore digital solutions and issues towards sustainable 
 st.sidebar.subheader('''Navigation''')
 
 # Navigation buttoms
-st.sidebar.button("1. Food Issues", key="1")
-st.sidebar.button("2. Digital solutions", key="2")
-st.sidebar.button("3. Tools", key="2")
-st.sidebar.button("4. About", key="2")
+#st.sidebar.button("1. Food Issues", key="1")
+#st.sidebar.button("2. Digital solutions", key="2")
+#st.sidebar.button("3. Tools", key="2")
+#st.sidebar.button("4. About", key="2")
 
-
-login =  st.sidebar.button("5.test")
-if login:
-    webbrowser.open(‘http://localhost:8501/Login 25’)
+new_choice = ['Home','Production','Consumption','Social','Climate change']
+choice = st.sidebar.radio("Select",('Digital Solutions','Food Issues','Documentation'),)
 
 
 st.sidebar.markdown("ℹ️ All the Charts are interactive. Scroll the mouse over the Charts to feel the interactive features like Tool tip, Zoom, Pan")
